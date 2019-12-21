@@ -14,13 +14,12 @@ Feature: sample karate test script
     * def user =
       """
       {
-        "email": "test@user.com",
-        "name": "Test User"
-        }
+        "email": "test@test.com",
+        "name": "test user"
       }
       """
 
-    Given url 'https://jsonplaceholder.typicode.com/users'
+    Given url 'http://127.0.0.1:8900/user'
     And request user
     When method post
     Then status 201
@@ -28,8 +27,4 @@ Feature: sample karate test script
     * def id = response.id
     * print 'created id is: ', id
 
-    Given path id
-    # When method get
-    # Then status 200
-    # And match response contains user
-  
+
