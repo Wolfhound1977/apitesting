@@ -9,6 +9,15 @@ Feature: suser testing
     When method get
     Then status 200
 
+  Scenario: get wrong user id
+    Given url 'http://127.0.0.1:8900/user?id=ttttttt'
+    When method get
+    Then status 404
+
+    * def error = response.id
+    * print 'error is: ', error
+
+
 
   Scenario: create a user
     * def user =
