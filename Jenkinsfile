@@ -11,6 +11,11 @@ pipeline {
         steps {
           echo '====Run tests===='
              sh  'mvn surefire:test -f pom.xml'
+          post {
+            always {
+                junit '**/reports/junit/*.xml'
+            }
+            }
           }
         }
       }
