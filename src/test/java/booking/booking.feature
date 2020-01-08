@@ -33,3 +33,27 @@ Feature: booking testing
     Given url 'http://127.0.0.1:8900/booking?id=pepe%40pepe.pe1-0.1'
     When method get
     Then status 200
+
+  Scenario: Wrong id for user
+    Given url 'http://127.0.0.1:8900/booking?id=tttttttt'
+    When method get
+    Then status 200
+
+  Scenario: create wrong booking IATA codes
+    * def booking =
+      """
+      {
+        "date": "2020-01-08",
+        "destination": "string",
+        "id": "pepe@pepe.pe1-0.1",
+        "origin": "string"
+      }
+      """
+
+    Given url 'http://127.0.0.1:8900/booking'
+    And request booking
+    When method post
+    Then status 409
+
+    * def id = response.id
+    * print 'error is: ', id
