@@ -4,13 +4,22 @@ Feature: booking testing
   Background:
     * url 'http://127.0.0.1:8900'
 
-  Scenario: get booking for existing user
-    Given url 'http://127.0.0.1:8900/booking?id=pepe%40pepe.pe1-0.1'
-    When method get
-    Then status 200
+  Scenario: create a booking for a non existing user
+    * def booking =
+      """
+      {
+        "date": "2020-01-01",
+        "destination": "NYC",
+        "id": "testuser",
+        "origin": "MAD"
+      }
+      """
+    Given url 'http://127.0.0.1:8900/booking'
+    And request booking
+    When method post
+    Then status 500
 
-
-  Scenario: create a booking
+  Scenario: create a booking for existing user
     * def booking =
       """
       {
@@ -25,9 +34,7 @@ Feature: booking testing
     And request booking
     When method post
     Then status 201
-
-    * def id = response.id
-    * print 'created id is: ', id
+    
 
   Scenario: get booking for existing user
     Given url 'http://127.0.0.1:8900/booking?id=pepe%40pepe.pe1-0.1'
