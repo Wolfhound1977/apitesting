@@ -1,4 +1,4 @@
-Feature: suser testing
+Feature: user testing
   for help, see: https://github.com/intuit/karate/wiki/IDE-Support
 
   Background:
@@ -14,7 +14,7 @@ Feature: suser testing
     When method get
     Then status 404
 
-    * def error = response.id
+    * def error = response.
     * print 'error is: ', error
 
 
