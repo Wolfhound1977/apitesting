@@ -34,7 +34,7 @@ Feature: booking testing
     And request booking
     When method post
     Then status 201
-    
+
 
   Scenario: get booking for existing user
     Given url 'http://127.0.0.1:8900/booking?id=pepe%40pepe.pe1-0.1'
