@@ -36,4 +36,19 @@ Feature: suser testing
     * def id = response.id
     * print 'created id is: ', id
 
+    * def booking =
+      """
+      {
+        "date": "2020-01-08",
+        "destination": "BER",
+        "id": #(id),
+        "origin": "MAD"
+      }
+      """
+
+    Given url 'http://127.0.0.1:8900/booking'
+    And request booking
+    When method post
+    Then status 201
+
 
